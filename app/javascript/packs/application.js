@@ -13,3 +13,10 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 import "bootstrap"
+
+
+let messages = document.getElementById('messages');
+
+setTimeout(function(){
+  $('#message').fadeOut();
+}, 2000);

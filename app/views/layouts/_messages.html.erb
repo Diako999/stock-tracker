@@ -1,0 +1,12 @@
+<% flash.each do |message_type, message_content| %>
+  <% if message_type == 'error' %>
+    <div class="alert alert-danger" id="message">
+        <%= message_content %>
+    </div>
+  <% else %>
+    <div class="alert alert-success" id="message">
+        <%= message_content %>
+    </div>
+  <% end %>
+
+<% end %>
