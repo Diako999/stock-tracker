@@ -3,10 +3,10 @@
 <div class="search-area">
   <h3 class="mt-5">search stocks</h3>
 
-  <%= form_tag search_stock_path, method: :get do %>
+  <%= form_tag search_stock_path, remote: true,  method: :get do %>
     <div class="form-group row">
       <div class="col-sm-9 pr-0">
-        <%= text_field_tag :stock, params[:stock] ,placeholder: 'stock to search', autofocus: true, class: "form-control form-control-large" %>
+        <%= text_field_tag :stock, params[:stock] ,placeholder: 'stock to search', autofocus: true, class: "form-control form-control-large input" %>
       </div>
       <div class="col-sm-3 pl-0">
         <%= button_tag type: :submit, class: "btn btn-success " do %>
@@ -17,10 +17,28 @@
 
   <%end%>
 </div>
-<% if @stock %>
-  <div class="card card-header">
-    <strong>Symbol: <%= @stock.ticker %></strong>
-    <strong>Name: <%= @stock.name %></strong>
-    <strong>Last Price: <%= @stock.last_price %></strong>
+<div id="results">
+
+</div>
+<div class="row">
+  <div class="col-9">
+    <table class="table table-hover table-dark mt-2">
+      <thead>
+        <tr>
+          <th scope="col">Stock</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-<%end%>
+</div>
