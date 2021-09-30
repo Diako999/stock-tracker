@@ -15,7 +15,7 @@ class Stock < ApplicationRecord
       end
   end
   def self.check_db(ticker)
-    where(ticker:ticker).first
+    where(ticker: ticker).first
   end
 
 end
