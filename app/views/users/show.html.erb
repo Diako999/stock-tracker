@@ -1,0 +1,25 @@
+<h2>User Details</h2>
+<div class="card card-header w-50 d-block">
+  <table>
+    <tbody>
+            <tr>
+              <td><strong>Name: <%= @user.first_name %></strong>  </td>
+              <td class="ml-1"><strong> Email: <%= @user.email %></strong>  </td>
+              <td class="ml-1">
+                <% if current_user.not_friends_with(@user.id) %>
+                  <%= link_to 'follow', friendships_path(user: @user),class: "btn btn-success btn-sm", method: :post %>
+                <%else%>
+                  <span class="badge badge-primary">friends</span>
+                <%end%>
+            </td>
+            </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<% if !@stocks.empty? %>
+  <%= render 'stocks/stocks' %>
+<% else %>
+  <p class="lead">"#{@user.first_name} is not tracking any stocks"</p>
+<% end %>

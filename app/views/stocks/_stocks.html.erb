@@ -15,7 +15,23 @@
             <td><%= stock.ticker %></td>
             <td><%= stock.name %></td>
             <td><%= stock.last_price %></td>
-            <td><%= link_to 'Utrack', user_stock_path(stock), method: :delete, data: {confirm: "sure??!!"}, class: "btn btn-sm  btn-danger" %></td>
+            <td>
+              <% if current_user.can_track(stock.ticker) %>
+
+                <%= link_to 'Add to portfo', user_stocks_path(user: current_user, ticker: stock.ticker),
+                                                          class: "btn btn-success btn-sm", method: :post %>
+              <% elsif current_user.id != @user.id %>
+                <span class="badge badge-primary">
+                  tracking
+                  <% if !current_user.track_limit %>
+                    10 stocks hit
+                  <% end %>
+                </span>
+              <% end %>
+               <% if current_user.id == @user.id %>
+                    <%= link_to 'Utrack', user_stock_path(stock), method: :delete, data: {confirm: "sure??!!"}, class: "btn btn-sm  btn-danger" %>
+                <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
